@@ -1,6 +1,6 @@
 ﻿using static System.Net.Mime.MediaTypeNames;
 
-namespace V2.CarDealer.API.Models
+namespace V2.CarDealer.API.DTOs
 {
     public class Vehicle
     {
@@ -23,8 +23,6 @@ namespace V2.CarDealer.API.Models
             public int Id { get; set; }
             public int VehicleId { get; set; }
             public string ImageUrl { get; set; }
-
-            // Navigation property
             public Vehicle Vehicle { get; set; }
         }
 

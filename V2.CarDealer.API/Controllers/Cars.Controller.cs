@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using V2.CarDealer.API.Repositories;
+using V2.CarDealer.API.CarsRepository;
 
 namespace V2.CarDealer.API.Controllers
 {

@@ -1,13 +1,13 @@
 ﻿using Dapper;
 using Microsoft.AspNetCore.Authorization;
 using System.Data.SqlClient;
-using V2.CarDealer.API.Models;
+using V2.CarDealer.API.DTOs;
 
-namespace V2.CarDealer.API.Repositories
+namespace V2.CarDealer.API.CarsRepository
 {
     public class Cars
     {
-        public static List<Vehicle> GetAllCars() 
+        public static List<Vehicle> GetAllCars()
         {
             using (var connection = new SqlConnection(Settings.SQLConnectionString))
             {
