@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Configuration;
 
 namespace V2.CarDealer.API
 {
@@ -6,6 +7,7 @@ namespace V2.CarDealer.API
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            Settings.Configuration = builder.Configuration;
 
             // Add services to the container.
 
@@ -17,16 +19,18 @@ namespace V2.CarDealer.API
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+
+            app.UseSwagger();
+            app.UseSwaggerUI();
 
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
+            app.UseCors(x => x
+                             .AllowAnyOrigin()
+                             .AllowAnyMethod()
+                             .AllowAnyHeader()
+                        );
 
             app.MapControllers();
 
