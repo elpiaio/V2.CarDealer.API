@@ -43,7 +43,7 @@ namespace V2.CarDealer.API.Repositories
                         SET 
                             sold = 1 
                         WHERE 
-                            vehicles.id = @userId;
+                            vehicles.id = @VehicleId;
                     ";
 
                     var parameters = new
@@ -56,8 +56,8 @@ namespace V2.CarDealer.API.Repositories
                         vehicleId = sale.VehicleId
                     };
 
-                    connection.Execute(queryUpdateSale, parameters);
-                    connection.Execute(query, parameters);
+                    connection.Query(queryUpdateSale, parameters);
+                    connection.Query(query, parameters);
 
                     return "Sucess!";
                 }

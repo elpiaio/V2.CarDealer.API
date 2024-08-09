@@ -12,7 +12,7 @@ namespace V2.CarDealer.API.Controllers
         public IActionResult CreateSale([FromBody] Sale sale)
         {
             string aaa = SalesRepository.ReqCreateSale(sale);
-            return Ok();
+            return Ok(aaa);
         }
 
         [HttpGet]
