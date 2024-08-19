@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
 using V2.CarDealer.API.CarsRepository;
 using V2.CarDealer.API.DTOs;
 
@@ -15,22 +16,6 @@ namespace V2.CarDealer.API.Controllers
             {
                 var vehicles = Cars.GetAllCars();
                 return Ok(vehicles);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
-        }
-
-        [HttpGet("{typeId}")]
-        public IActionResult GetByType(int typeId)
-        {
-            if (typeId <= 0) return BadRequest("Invalid typeId");
-
-            try
-            {
-                var result = Cars.GetByType(typeId);
-                return result != null && result.Any() ? Ok(result) : NotFound("No vehicles found for the given type");
             }
             catch (Exception ex)
             {
@@ -63,6 +48,65 @@ namespace V2.CarDealer.API.Controllers
             {
                 Cars.ReqInsertImage(image);
                 return Ok("Image inserted successfully");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+        [HttpGet]
+        public IActionResult GetBrands()
+        {
+            try
+            {
+                var result = Cars.GetBrandsRepository();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+        /* filters of car*/
+        [HttpGet("{typeId}")]
+        public IActionResult GetByType(int typeId)
+        {
+            if (typeId <= 0) return BadRequest("Invalid typeId");
+
+            try
+            {
+                var result = Cars.GetByType(typeId);
+                return result != null && result.Any() ? Ok(result) : NotFound("No vehicles found for the given type");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult GetByMultiTypes([FromBody] Types TypesList)
+        {
+            try
+            {
+                var result = Cars.GetByMultiTypeRepository(TypesList);
+                return result != null && result.Any() ? Ok(result) : NotFound("No vehicles found for the given type");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult FilterByHP([FromBody] HorsePower horsePower)
+        {
+            try
+            {
+                var result = Cars.FilterByHPRepository(horsePower);
+                return Ok(result);
             }
             catch (Exception ex)
             {
