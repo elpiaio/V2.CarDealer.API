@@ -69,6 +69,20 @@ namespace V2.CarDealer.API.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult GetModels()
+        {
+            try
+            {
+                var result = Cars.GetModelsRepository();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
         /* filters of car*/
         [HttpGet("{typeId}")]
         public IActionResult GetByType(int typeId)

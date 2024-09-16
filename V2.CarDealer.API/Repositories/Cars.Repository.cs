@@ -160,6 +160,23 @@ namespace V2.CarDealer.API.CarsRepository
             }
         }
 
+        public static List<dynamic> GetModelsRepository()
+        {
+            using (var connection = new SqlConnection(Settings.SQLConnectionString))
+            {
+                try
+                {
+                    string query = @"select DISTINCT v.model from vehicles v;";
+                    var result = connection.Query(query).ToList();
+                    return result;
+                }
+                catch (SqlException ex)
+                {
+                    throw new Exception($"Database query failed: {ex.Message}", ex);
+                }
+            }
+        }
+
         /* FIlters */
 
         public static List<Vehicle> GetByType(int typeId)
