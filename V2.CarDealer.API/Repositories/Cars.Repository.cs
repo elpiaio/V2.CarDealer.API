@@ -1,7 +1,7 @@
 ﻿using Dapper;
-using V2.CarDealer.API.DTOs;
 using System.Data.SqlClient;
 using System.ComponentModel;
+using V2.CarDealer.API.DTOs.CarsObjects;
 
 namespace V2.CarDealer.API.CarsRepository
 {

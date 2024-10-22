@@ -1,6 +1,6 @@
 ﻿using static System.Net.Mime.MediaTypeNames;
 
-namespace V2.CarDealer.API.DTOs
+namespace V2.CarDealer.API.DTOs.CarsObjects
 {
     public class Vehicle
     {
@@ -16,7 +16,7 @@ namespace V2.CarDealer.API.DTOs
         public bool Sold { get; set; }
         public string Type { get; set; }
         public ICollection<Image> Images { get; set; }
-        
+
         public class Image
         {
             public int id { get; set; }

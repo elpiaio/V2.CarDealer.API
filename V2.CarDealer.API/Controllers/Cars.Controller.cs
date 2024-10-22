@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel;
 using V2.CarDealer.API.CarsRepository;
-using V2.CarDealer.API.DTOs;
+using V2.CarDealer.API.DTOs.CarsObjects;
 
 namespace V2.CarDealer.API.Controllers
 {

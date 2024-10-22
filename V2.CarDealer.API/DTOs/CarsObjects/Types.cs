@@ -1,4 +1,4 @@
-﻿namespace V2.CarDealer.API.DTOs
+﻿namespace V2.CarDealer.API.DTOs.CarsObjects
 {
     public class Types
     {

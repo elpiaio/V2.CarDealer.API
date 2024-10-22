@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Text.RegularExpressions;
-using V2.CarDealer.API.DTOs;
+using V2.CarDealer.API.DTOs.UsersObjects;
 using V2.CarDealer.API.UserRepository;
 
 namespace V2.CarDealer.API.Controllers
 {
-	[Route("api/[controller]/[action]")]
+    [Route("api/[controller]/[action]")]
 	[ApiController]
 	public class UserController : Controller
 	{

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using V2.CarDealer.API.Repositories;
-using V2.CarDealer.API.DTOs;
+using V2.CarDealer.API.DTOs.CarsObjects;
 
 namespace V2.CarDealer.API.Controllers
 {
@@ -40,6 +40,13 @@ namespace V2.CarDealer.API.Controllers
         public IActionResult GetSalesByUsers()
         {
             var result = SalesRepository.ReqGetSalesByUsers();
+            return Ok(result);
+        }
+
+        [HttpGet]
+        public IActionResult GetSalesByBrand()
+        {
+            var result = SalesRepository.ReqGetSalesByBrand();
             return Ok(result);
         }
     }

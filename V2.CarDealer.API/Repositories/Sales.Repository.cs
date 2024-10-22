@@ -6,7 +6,8 @@ using System.Data.SqlClient;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
-using V2.CarDealer.API.DTOs;
+using V2.CarDealer.API.DTOs.CarsObjects;
+using V2.CarDealer.API.DTOs.UsersObjects;
 
 namespace V2.CarDealer.API.Repositories
 {
@@ -226,11 +227,65 @@ namespace V2.CarDealer.API.Repositories
             }
         }
         
-        public static string ReqGetSalesByUsers()
+        public static List<TotalSales> ReqGetSalesByUsers()
         {
             using (var connection = new SqlConnection(Settings.SQLConnectionString))
             {
-                return "teste";
+                try
+                {
+                    string query = @"
+                       SELECT 
+                          sales.brand,
+                          sales.model,
+                       COUNT(*) AS TotalVendas
+                       FROM 
+                          sales
+                       GROUP BY
+                        sales.brand,
+                        sales.model;
+                       ORDER BY
+                        TotalVendas desc
+                    ";
+
+                    List<TotalSales> result = connection.Query<TotalSales>(query).ToList();
+
+                    return result;
+                }
+                catch
+                {
+                    throw new Exception("error");
+                }
+            }
+        }
+
+        public static List<TotalSales> ReqGetSalesByBrand()
+        {
+            using (var connection = new SqlConnection(Settings.SQLConnectionString))
+            {
+                try
+                {
+                    string query = @"
+                       SELECT 
+                          sales.brand,
+                          sales.model,
+                       COUNT(*) AS TotalVendas
+                       FROM 
+                          sales
+                       GROUP BY
+                        sales.brand,
+                        sales.model
+                       ORDER BY
+                        TotalVendas desc;
+                    ";
+
+                    List<TotalSales> result = connection.Query<TotalSales>(query).ToList();
+
+                    return result;
+                }
+                catch ( Exception ex)
+                {
+                    throw ex;
+                }
             }
         }
     }

@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
-using V2.CarDealer.API.DTOs;
+using V2.CarDealer.API.DTOs.UsersObjects;
 
 namespace V2.CarDealer.API.UserRepository
 {
